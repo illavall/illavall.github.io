@@ -24,7 +24,7 @@
       display: flex;
       flex-direction: column; /* Apilar elementos verticalmente */
       align-items: center;
-      font-family: "Comic Sans MS", cursive; /* Cambiar la fuente a Comic Sans */
+      font-family: cursive; /* Cambiar la fuente a cursive */
     }
     .container {
       text-align: center;
@@ -91,8 +91,15 @@
         margin-top: 10px; /* Ajustar la distancia del título desde la parte superior en dispositivos móviles */
       }
       body {
-        font-family: "Comic Sans MS", cursive; /* Cambiar la fuente a Comic Sans en dispositivos móviles */
+        font-family: cursive; /* Cambiar la fuente a cursive en dispositivos móviles */
       }
+    }
+
+    /* Estilos adicionales para el mensaje "Amore... Ya has elegido tu suerte" */
+    #selected-message {
+      font-size: 24px; /* Tamaño de fuente más grande */
+      font-weight: bold; /* Texto en negrita */
+      color: red; /* Color rojo */
     }
   </style>
 </head>
@@ -164,6 +171,11 @@
   function showFortune(selectedCookie) {
     if (fortuneSelected) {
       document.getElementById("fortune").textContent = "Amore... Ya has elegido tu suerte, deja de cotillear otras galletas.";
+      document.getElementById("fortune").style.display = "block"; /* Mostrar el mensaje si está oculto */
+      document.getElementById("fortune").style.display = "inline"; /* Asegurar que el mensaje esté en línea */
+      document.getElementById("fortune").style.fontSize = "24px"; /* Tamaño de fuente más grande */
+      document.getElementById("fortune").style.fontWeight = "bold"; /* Texto en negrita */
+      document.getElementById("fortune").style.color = "red"; /* Color rojo */
       return;
     }
 
