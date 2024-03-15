@@ -5,6 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calculadora de sartén para tortilla</title>
     <style>
+        @font-face {
+            font-family: 'Comic Sans MS';
+            src: url('https://fonts.googleapis.com/css2?family=Comic+Sans+MS&display=swap');
+        }
+
         body {
             font-family: 'Comic Sans MS', cursive; /* Fuente Comic Sans */
             display: flex;
@@ -17,6 +22,8 @@
         }
         .container {
             text-align: center;
+            max-width: 80%;
+            padding: 0 20px;
         }
         #egg-wrapper {
             position: relative;
@@ -54,11 +61,25 @@
         #resultado {
             margin-top: 20px;
         }
+
+        @media screen and (max-width: 600px) {
+            /* Estilos específicos para dispositivos móviles */
+            .container {
+                max-width: 100%;
+            }
+            #egg-input {
+                width: 80px;
+                height: 100px;
+            }
+            #calcular-btn {
+                padding: 10px 20px;
+            }
+        }
     </style>
 </head>
 <body>
     <div class="container">
-        <img src="Tortilla.jpg" alt="Imagen de tortilla" style="width: 495px; height: 296,25;">
+        <img src="Tortilla.jpg" alt="Imagen de tortilla" style="max-width: 100%;">
         <h1>Hola Xoxette! Caulcula qué sartén necesitarás para tu tortilla :P</h1>
         <h2>Escribe el número de huevos que vas a utilizar:</h2>
         <div id="egg-wrapper">
@@ -76,7 +97,7 @@
                 resultadoElement.innerText = "Con esa cantidad, poca tortilla vas a comer... pídele alguno a la vecina";
             } else {
                 var diametro = Math.sqrt(113 * numHuevos / Math.PI) * 2;
-                resultadoElement.innerText = "Olee guapa!! para " + numHuevos + " huevos, necesitarás una sartén de " + diametro.toFixed(2) + " cm. Bon profit :)";
+                resultadoElement.innerText = "Olee guapa!! para " + numHuevos + " huevos, necesitarás una sartén de " + diametro.toFixed(2) + " cm. bon profit :)";
             }
         }
     </script>
