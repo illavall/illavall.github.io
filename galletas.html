@@ -17,17 +17,13 @@
       opacity: 0.5; /* Transparencia del fondo */
       z-index: -1; /* Coloca el contenedor detrás del contenido */
     }
- @font-face {
-      font-family: 'Comic Sans MS';
-      src: url('C:\Users\illav\OneDrive\Escritorio\Galletas') format('truetype');
-    }
+
     body {
       margin: 0;
       padding: 0;
       display: flex;
       flex-direction: column; /* Apilar elementos verticalmente */
       align-items: center;
-      font-family: 'Comic Sans MS', cursive; /* Fuente Comic Sans */
     }
     .container {
       text-align: center;
@@ -35,6 +31,7 @@
     }
     h1 {
       margin-top: 20px; /* Ajusta la distancia del título desde la parte superior */
+      font-family: 'Comic Sans MS', cursive; /* Fuente Comic Sans */
     }
     .cookie {
       width: 100px;
@@ -72,6 +69,7 @@
 
     .fortune-text {
       margin-top: 10px;
+      font-family: 'Comic Sans MS', cursive; /* Fuente Comic Sans */
     }
 
     .fortune-image {
@@ -92,8 +90,12 @@
     @media only screen and (max-width: 600px) {
       h1 {
         margin-top: 10px; /* Ajustar la distancia del título desde la parte superior en dispositivos móviles */
+        font-family: 'Comic Sans MS', cursive; /* Fuente Comic Sans en dispositivos móviles */
       }
       body {
+        font-family: 'Comic Sans MS', cursive; /* Fuente Comic Sans en dispositivos móviles */
+      }
+      .fortune-text {
         font-family: 'Comic Sans MS', cursive; /* Fuente Comic Sans en dispositivos móviles */
       }
     }
