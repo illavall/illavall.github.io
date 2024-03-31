@@ -3,103 +3,82 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Calculadora de sartén para tortilla</title>
+    <title>Ca la Llavall</title>
     <style>
-        @font-face {
-            font-family: 'Comic Sans MS';
-            src: url('comic.ttf') format('truetype');
-        }
-
         body {
-            font-family: 'Comic Sans MS', cursive; /* Fuente Comic Sans */
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
+            font-family: Arial, sans-serif;
             margin: 0;
-            background-color: #fce4ec; /* Fondo rosa pálido */
+            padding: 0;
+            background-image: url('https://example.com/imagen-de-fondo.jpg'); /* URL de la imagen de fondo */
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            color: #fff; /* Color del texto */
         }
         .container {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: rgba(0, 0, 0, 0.5); /* Color de fondo semitransparente */
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
             text-align: center;
-            max-width: 80%;
-            padding: 0 20px;
         }
-        #egg-wrapper {
-            position: relative;
-            margin-top: 20px; /* Espacio entre el título y el huevo */
+        ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
         }
-        #egg-input {
-            width: 100px;
-            height: 130px;
-            border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%; /* Forma de huevo invertida */
-            padding: 10px;
-            font-size: 16px;
-            border: 2px solid #ccc;
-            outline: none;
-            transition: border-color 0.3s;
-            background-color: #f7f3d8; /* Fondo amarronado pálido */
-            text-align: center; /* Centra el texto */
+        li {
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
         }
-        #egg-label {
+        .web {
+            flex: 1;
+            margin-left: 20px;
+        }
+        .web h2 {
+            margin-top: 0;
+        }
+        .web p {
             margin-bottom: 10px;
         }
-        #calcular-btn {
-            margin-top: 20px; /* Espacio entre el huevo y el botón */
-            padding: 15px 30px; /* Ajusta el tamaño del botón */
-            background-color: white; /* Fondo blanco */
-            border: none;
-            border-radius: 5px; /* Bordes redondeados */
-            color: #ff69b4; /* Color del texto */
-            font-size: 16px;
-            cursor: pointer; /* Cambia el cursor al pasar por encima */
-            transition: background-color 0.3s; /* Efecto de transición */
+        .caratula {
+            cursor: pointer; /* Cambia el cursor al pasar sobre la carátula */
+            transition: transform 0.3s ease; /* Efecto de transición al pasar el ratón */
         }
-        #calcular-btn:hover {
-            background-color: #f0f0f0; /* Cambia el color de fondo al pasar el ratón */
-        }
-        #resultado {
-            margin-top: 20px;
-        }
-
-        @media screen and (max-width: 600px) {
-            /* Estilos específicos para dispositivos móviles */
-            .container {
-                max-width: 100%;
-            }
-            #egg-input {
-                width: 80px;
-                height: 100px;
-            }
-            #calcular-btn {
-                padding: 10px 20px;
-            }
+        .caratula:hover {
+            transform: scale(1.1); /* Efecto de escala al pasar el ratón */
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <img src="Tortilla.jpg" alt="Imagen de tortilla" style="max-width: 100%;">
-        <h1>Hola Xoxette! Calcula que sartén necesitarás para tu tortilla :P</h1>
-        <h2>Escribe el número de huevos que vas a utilizar:</h2>
-        <div id="egg-wrapper">
-            <input type="text" id="egg-input" placeholder=" " inputmode="numeric" pattern="[0-9]*">
-        </div>
-        <button id="calcular-btn" onclick="calcularSarten()">Calcular</button>
-        <p id="resultado"></p>
+        <h1>Ca la Llavall</h1>
+        <ul>
+            <li>
+                <a href="https://tuproyecto.github.io/proyecto1/">
+                    <img src="https://example.com/caratula-proyecto1.jpg" alt="Carátula Proyecto 1" class="caratula" width="100" height="100">
+                </a>
+                <div class="web">
+                    <h2>Proyecto 1</h2>
+                    <p>Descripción del Proyecto 1.</p>
+                </div>
+            </li>
+            <li>
+                <a href="https://tuproyecto.github.io/proyecto2/">
+                    <img src="https://example.com/caratula-proyecto2.jpg" alt="Carátula Proyecto 2" class="caratula" width="100" height="100">
+                </a>
+                <div class="web">
+                    <h2>Proyecto 2</h2>
+                    <p>Descripción del Proyecto 2.</p>
+                </div>
+            </li>
+            <!-- Añade más proyectos según sea necesario -->
+        </ul>
     </div>
-
-    <script>
-        function calcularSarten() {
-            var numHuevos = parseInt(document.getElementById("egg-input").value);
-            var resultadoElement = document.getElementById("resultado");
-            if (isNaN(numHuevos) || numHuevos <= 0) {
-                resultadoElement.innerText = "Con esa cantidad, poca tortilla vas a comer... pídele alguno a la vecina";
-            } else {
-                var diametro = Math.sqrt(113 * numHuevos / Math.PI) * 2;
-                resultadoElement.innerText = "Olee guapa!! para " + numHuevos + " huevos, necesitarás una sartén de " + diametro.toFixed(2) + " cm. bon profit :)";
-            }
-        }
-    </script>
 </body>
 </html>
