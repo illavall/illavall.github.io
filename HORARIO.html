@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trabajo en el campo</title>
+    <style>
+        body {
+            margin-left: 2cm;
+            margin-right: 2cm;
+            font-family: Verdana, sans-serif;
+        }
+        .container {
+            margin-top: 20px;
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: space-between;
+        }
+        #print-button {
+            margin-right: 20px;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: center;
+        }
+        .green {
+            color: green;
+        }
+        .day-cell {
+            white-space: nowrap;
+        }
+    </style>
+</head>
+<body>
+    <h1>Trabajo en el campo</h1>
+    <div class="container">
+        <label for="mes">Selecciona el mes:</label>
+        <select id="mes" onchange="generarTabla()">
+            <option value="1">Enero</option>
+            <option value="2">Febrero</option>
+            <option value="3">Marzo</option>
+            <option value="4">Abril</option>
+            <option value="5">Mayo</option>
+            <option value="6">Junio</option>
+            <option value="7">Julio</option>
+            <option value="8">Agosto</option>
+            <option value="9">Septiembre</option>
+            <option value="10">Octubre</option>
+            <option value="11">Noviembre</option>
+            <option value="12">Diciembre</option>
+        </select>
+        <button id="print-button" onclick="window.print()">Imprimir</button>
+    </div>
+    
+    <table id="tabla-registro">
+        <tr>
+            <th>Día</th>
+            <th>Entrada Mañana</th>
+            <th>Salida Mañana</th>
+            <th>Entrada Tarde</th>
+            <th>Salida Tarde</th>
+            <th>Dinero Recibido</th>
+            <th>Horas Trabajadas</th>
+            <th>Dinero Ganado</th>
+            <th>Deuda Pendiente</th>
+        </tr>
+    </table>
+
+    <script>
+        function generarTabla() {
+            const mesSeleccionado = document.getElementById('mes').value;
+            const tablaRegistro = document.getElementById('tabla-registro');
+            tablaRegistro.innerHTML = '<tr><th>Día</th><th>Entrada Mañana</th><th>Salida Mañana</th><th>Entrada Tarde</th><th>Salida Tarde</th><th>Dinero Recibido</th><th>Horas Trabajadas</th><th>Dinero Ganado</th><th>Deuda Pendiente</th></tr>';
+            const numDias = new Date(2024, mesSeleccionado, 0).getDate(); // Obtener el número de días del mes
+
+            for (let i = 1; i <= numDias; i++) {
+                const fecha = new Date(2024, mesSeleccionado - 1, i);
+                const diaSemana = fecha.toLocaleDateString('es-ES', { weekday: 'short' });
+
+                const entradaManana = `entrada_manana_horas_${mesSeleccionado}_${i}`;
+                const salidaManana = `salida_manana_horas_${mesSeleccionado}_${i}`;
+                const entradaTarde = `entrada_tarde_horas_${mesSeleccionado}_${i}`;
+                const salidaTarde = `salida_tarde_horas_${mesSeleccionado}_${i}`;
+                const dineroRecibido = `dinero_recibido_${mesSeleccionado}_${i}`;
+                const horasTrabajadas = `horas_trabajadas_${mesSeleccionado}_${i}`;
+                const dineroGanado = `dinero_ganado_${mesSeleccionado}_${i}`;
+                const deudaPendiente = `deuda_pendiente_${mesSeleccionado}_${i}`;
+
+                const entradaMananaValue = localStorage.getItem(entradaManana) || '';
+                const salidaMananaValue = localStorage.getItem(salidaManana) || '';
+                const entradaTardeValue = localStorage.getItem(entradaTarde) || '';
+                const salidaTardeValue = localStorage.getItem(salidaTarde) || '';
+                const dineroRecibidoValue = localStorage.getItem(dineroRecibido) || '';
+
+                tablaRegistro.innerHTML += `
+                    <tr>
+                        <td class="day-cell">${diaSemana} - ${i}</td>
+                        <td><input type="number" id="${entradaManana}" min="1" max="12" value="${entradaMananaValue}" onchange="guardarDatos('${entradaManana}')"></td>
+                        <td><input type="number" id="${salidaManana}" min="1" max="12" value="${salidaMananaValue}" onchange="guardarDatos('${salidaManana}')"></td>
+                        <td><input type="number" id="${entradaTarde}" min="1" max="12" value="${entradaTardeValue}" onchange="guardarDatos('${entradaTarde}')"></td>
+                        <td><input type="number" id="${salidaTarde}" min="1" max="12" value="${salidaTardeValue}" onchange="guardarDatos('${salidaTarde}')"></td>
+                        <td><input type="number" id="${dineroRecibido}" min="0" value="${dineroRecibidoValue}" onchange="guardarDatos('${dineroRecibido}')"></td>
+                        <td id="${horasTrabajadas}">0</td>
+                        <td id="${dineroGanado}" class="green">0</td>
+                        <td id="${deudaPendiente}">0</td>
+                    </tr>
+                `;
+            }
+            calcularSalario();
+        }
+
+        function guardarDatos(id) {
+            const valor = document.getElementById(id).value;
+            localStorage.setItem(id, valor);
+            calcularSalario();
+        }
+
+        function calcularSalario() {
+            const tarifaHora = 15; // euros por hora trabajada
+            let totalHoras = 0;
+            let totalPagado = 0;
+
+            // Calcular horas trabajadas y dinero pagado por día
+            const mesSeleccionado = document.getElementById('mes').value;
+            const numDias = new Date(2024, mesSeleccionado, 0).getDate();
+            for (let i = 1; i <= numDias; i++) {
+                const entradaManana = parseInt(localStorage.getItem(`entrada_manana_horas_${mesSeleccionado}_${i}`)) || 0;
+                const salidaManana = parseInt(localStorage.getItem(`salida_manana_horas_${mesSeleccionado}_${i}`)) || 0;
+                const entradaTarde = parseInt(localStorage.getItem(`entrada_tarde_horas_${mesSeleccionado}_${i}`)) || 0;
+                const salidaTarde = parseInt(localStorage.getItem(`salida_tarde_horas_${mesSeleccionado}_${i}`)) || 0;
+                const dineroRecibido = parseFloat(localStorage.getItem(`dinero_recibido_${mesSeleccionado}_${i}`)) || 0;
+
+                let horasTrabajadas = 0;
+                let dineroGanado = 0;
+
+                horasTrabajadas += salidaManana - entradaManana;
+                horasTrabajadas += salidaTarde - entradaTarde;
+
+                dineroGanado += horasTrabajadas * tarifaHora;
+
+                totalHoras += horasTrabajadas;
+                totalPagado += dineroRecibido;
+
+                const deudaPendiente = dineroGanado - dineroRecibido;
+                const deudaAnterior = i > 1 ? parseFloat(document.getElementById(`deuda_pendiente_${mesSeleccionado}_${i - 1}`).textContent) : 0;
+                const deudaTotal = deudaPendiente + deudaAnterior;
+
+                document.getElementById(`horas_trabajadas_${mesSeleccionado}_${i}`).textContent = horasTrabajadas.toFixed(2);
+                document.getElementById(`dinero_ganado_${mesSeleccionado}_${i}`).textContent = dineroGanado.toFixed(2);
+                document.getElementById(`deuda_pendiente_${mesSeleccionado}_${i}`).textContent = deudaTotal.toFixed(2);
+            }
+
+            // Calcular deuda pendiente
+            const salario = totalHoras * tarifaHora;
+            const deuda = salario - totalPagado;
+            document.getElementById('deuda').textContent = deuda.toFixed(2);
+        }
+
+        // Generar la tabla inicialmente para el mes seleccionado
+        generarTabla();
+    </script>
+</body>
+</html>
+
