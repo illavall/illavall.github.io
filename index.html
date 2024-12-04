@@ -7,9 +7,10 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
- 
+  <header>
+    <!-- Aquí puedes añadir un logo o título si lo deseas -->
   </header>
-  
+
   <main>
     <form id="episodeSelector" onsubmit="goToEpisode(event)">
       <label for="season">Selecciona una temporada:</label>
@@ -28,12 +29,15 @@
         <option value="3">Episodio 3</option>
       </select>
 
-      <button type="submit">Reproducir</button>
+      <div class="button-container">
+        <button type="submit" class="btn-primary">Reproducir</button>
+        <button type="button" class="btn-secondary" onclick="playRandomEpisode()">Aleatorio</button>
+      </div>
     </form>
   </main>
 
   <footer>
-  
+    <!-- Aquí puedes añadir información adicional -->
   </footer>
 
   <script>
@@ -51,11 +55,21 @@
       const episode = document.getElementById("episode").value;
 
       if (season && episode && episodeLinks[season][episode]) {
-        // Redirige al enlace del episodio correspondiente
         window.location.href = episodeLinks[season][episode];
       } else {
         alert("Por favor, selecciona una temporada y un episodio válidos.");
       }
+    }
+
+    // Función para reproducir un episodio aleatorio
+    function playRandomEpisode() {
+      const seasons = Object.keys(episodeLinks);
+      const randomSeason = seasons[Math.floor(Math.random() * seasons.length)];
+      const episodes = Object.keys(episodeLinks[randomSeason]);
+      const randomEpisode = episodes[Math.floor(Math.random() * episodes.length)];
+
+      const randomLink = episodeLinks[randomSeason][randomEpisode];
+      window.location.href = randomLink; // Redirige al episodio aleatorio
     }
   </script>
 </body>
