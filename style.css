@@ -1,74 +1,65 @@
-/* Contenedor de los botones */
-.button-container {
+/* General Styles */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f6d8e7; /* Color de fondo */
   display: flex;
-  align-items: center;
   justify-content: center;
-  gap: 15px; /* Espacio entre elementos */
-  margin: 20px auto; /* Añade margen con los bordes superiores e inferiores */
-  padding: 10px 20px; /* Añade espacio interno */
-  max-width: 90%; /* Limita el ancho máximo del contenedor */
+  align-items: center;
+  height: 100vh; /* Asegura que ocupe toda la pantalla */
 }
 
-/* Botón principal (Reproducir) */
-.btn-primary {
-  flex: 1; /* Ocupa el espacio restante */
+/* Imagen centrada */
+body::before {
+  content: "";
+  background-image: url(B.jpg); /* Cambia por la ruta de tu imagen */
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain; /* Asegura que no se deforme */
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 0; /* Coloca la imagen debajo del contenido */
+  opacity: 1; /* Ajusta la opacidad si es necesario */
+}
+
+/* Cuadro de selección */
+main {
+  position: relative;
+  z-index: 1; /* Asegura que esté encima de la imagen */
+  background-color: #f6d8e7; /* Fondo del cuadro */
+  padding: 20px;
+  border: 1mm solid #414040; /* Borde del cuadro */
+  border-radius: 8px; /* Bordes redondeados */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3); /* Sombras suaves */
+  text-align: center;
+  width: 300px;
+}
+
+label {
+  font-size: 16px;
+  display: block;
+  margin-bottom: 10px;
+}
+
+select, button {
+  font-size: 14px;
+  padding: 10px;
+  margin: 10px 0;
+  width: 100%;
+  border: 1px solid #414040;
+  border-radius: 4px;
+}
+
+button {
   background-color: #414040;
   color: #fff;
-  border: none;
-  padding: 10px 15px;
-  font-size: 16px;
-  border-radius: 4px;
-  cursor: pointer;
-  text-align: center;
-}
-
-/* Botón secundario (Aleatorio) */
-.btn-secondary {
-  width: 50px; /* Botón cuadrado */
-  height: 50px;
-  background-color: #6a6a6a;
-  color: #fff;
-  font-size: 20px; /* Ajusta el tamaño del texto */
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border: none;
-  border-radius: 4px;
   cursor: pointer;
 }
 
-/* Hover para ambos botones */
-.btn-primary:hover {
-  background-color: #333;
-}
-
-.btn-secondary:hover {
-  background-color: #505050;
-}
-
-/* Texto separador */
-.separator {
-  font-size: 16px;
-  color: #414040;
-  font-weight: bold;
-}
-
-/* Estilo para los desplegables */
-select {
-  appearance: none; /* Oculta la flecha predeterminada */
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  background-color: #f6d8e7;
-  border: 1px solid #414040;
-  padding: 10px;
-  font-size: 16px;
-  border-radius: 4px;
-  width: 100%;
-  box-sizing: border-box; /* Asegura que el padding no afecte al tamaño total */
-}
-
-/* Posición del contenedor */
-form {
-  max-width: 400px;
-  margin: 20px auto; /* Centra el formulario en la pantalla */
+button:hover {
+  background-color: #6a6a6a; /* Oscurece el botón al pasar el ratón */
 }
