@@ -1,84 +1,63 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ca la Llavall</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-image: url('https://example.com/imagen-de-fondo.jpg'); /* URL de la imagen de fondo */
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            color: #fff; /* Color del texto */
-        }
-        .container {
-            max-width: 800px;
-            margin: 50px auto;
-            padding: 20px;
-            background-color: rgba(0, 0, 0, 0.5); /* Color de fondo semitransparente */
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-        h1 {
-            text-align: center;
-        }
-        ul {
-            list-style-type: none;
-            padding: 0;
-            margin: 0;
-        }
-        li {
-            margin-bottom: 20px;
-            display: flex;
-            align-items: center;
-        }
-        .web {
-            flex: 1;
-            margin-left: 20px;
-        }
-        .web h2 {
-            margin-top: 0;
-        }
-        .web p {
-            margin-bottom: 10px;
-        }
-        .caratula {
-            cursor: pointer; /* Cambia el cursor al pasar sobre la carátula */
-            transition: transform 0.3s ease; /* Efecto de transición al pasar el ratón */
-        }
-        .caratula:hover {
-            transform: scale(1.1); /* Efecto de escala al pasar el ratón */
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Seleccionar Episodio</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="container">
-        <h1>Ca la Llavall</h1>
-        <ul>
-            <li>
-                <a href="https://tuproyecto.github.io/proyecto1/">
-                    <img src="https://example.com/caratula-proyecto1.jpg" alt="Carátula Proyecto 1" class="caratula" width="100" height="100">
-                </a>
-                <div class="web">
-                    <h2>Proyecto 1</h2>
-                    <p>Descripción del Proyecto 1.</p>
-                </div>
-            </li>
-            <li>
-                <a href="https://tuproyecto.github.io/proyecto2/">
-                    <img src="https://example.com/caratula-proyecto2.jpg" alt="Carátula Proyecto 2" class="caratula" width="100" height="100">
-                </a>
-                <div class="web">
-                    <h2>Proyecto 2</h2>
-                    <p>Descripción del Proyecto 2.</p>
-                </div>
-            </li>
-            <!-- Añade más proyectos según sea necesario -->
-        </ul>
-    </div>
+  <header>
+    <h1>La  mágica Do Re Mi</h1>
+  </header>
+  
+  <main>
+    <form id="episodeSelector" onsubmit="goToEpisode(event)">
+      <label for="season">Selecciona una temporada:</label>
+      <select id="season" name="season" required>
+        <option value="" disabled selected>Elige una temporada</option>
+        <option value="1">Temporada 1</option>
+        <option value="2">Temporada 2</option>
+        <option value="3">Temporada 3</option>
+      </select>
+
+      <label for="episode">Selecciona un episodio:</label>
+      <select id="episode" name="episode" required>
+        <option value="" disabled selected>Elige un episodio</option>
+        <option value="1">Episodio 1</option>
+        <option value="2">Episodio 2</option>
+        <option value="3">Episodio 3</option>
+      </select>
+
+      <button type="submit">Reproducir</button>
+    </form>
+  </main>
+
+  <footer>
+    <p>© 2024 La màgica DoReMi</p>
+  </footer>
+
+  <script>
+    // Mapa con enlaces de episodios organizados por temporada y capítulo
+    const episodeLinks = {
+      "1": { "1": "https://drive.google.com/drive/u/2/folders/1CW8B3rWo4l4bku3VzbrDvS5TY3Hh7ugW", "2": "https://drive.google.com/uc?id=ID_EPISODIO_T1E2", "3": "https://drive.google.com/uc?id=ID_EPISODIO_T1E3" },
+      "2": { "1": "https://drive.google.com/uc?id=ID_EPISODIO_T2E1", "2": "https://drive.google.com/uc?id=ID_EPISODIO_T2E2", "3": "https://drive.google.com/uc?id=ID_EPISODIO_T2E3" },
+      "3": { "1": "https://drive.google.com/uc?id=ID_EPISODIO_T3E1", "2": "https://drive.google.com/uc?id=ID_EPISODIO_T3E2", "3": "https://drive.google.com/uc?id=ID_EPISODIO_T3E3" }
+    };
+
+    // Función para redirigir al episodio seleccionado
+    function goToEpisode(event) {
+      event.preventDefault(); // Evita que el formulario recargue la página
+      const season = document.getElementById("season").value;
+      const episode = document.getElementById("episode").value;
+
+      if (season && episode && episodeLinks[season][episode]) {
+        // Redirige al enlace del episodio correspondiente
+        window.location.href = episodeLinks[season][episode];
+      } else {
+        alert("Por favor, selecciona una temporada y un episodio válidos.");
+      }
+    }
+  </script>
 </body>
 </html>
