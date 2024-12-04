@@ -4,7 +4,6 @@ body {
   margin: 0;
   padding: 0;
   background-color: #f6d8e7; /* Color de fondo */
-  background-image: url('A.png'); /* Cambia 'fondo.jpg' por la ruta de tu imagen de fondo */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -14,7 +13,7 @@ body {
 /* Imagen centrada */
 body::before {
   content: "";
-  background-image: url(A.png); /* Cambia por la ruta de tu imagen */
+  background-image: url(B.jpg); /* Cambia por la ruta de tu imagen */
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain; /* Asegura que no se deforme */
