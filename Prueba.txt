@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Seleccionar Episodio</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>La  mágica Do Re Mi</h1>
+  </header>
+  
+  <main>
+    <form id="episodeSelector" onsubmit="goToEpisode(event)">
+      <label for="season">Selecciona una temporada:</label>
+      <select id="season" name="season" required>
+        <option value="" disabled selected>Elige una temporada</option>
+        <option value="1">Temporada 1</option>
+        <option value="2">Temporada 2</option>
+        <option value="3">Temporada 3</option>
+      </select>
+
+      <label for="episode">Selecciona un episodio:</label>
+      <select id="episode" name="episode" required>
+        <option value="" disabled selected>Elige un episodio</option>
+        <option value="1">Episodio 1</option>
+        <option value="2">Episodio 2</option>
+        <option value="3">Episodio 3</option>
+      </select>
+
+      <button type="submit">Reproducir</button>
+    </form>
+  </main>
+
+  <footer>
+    <p>© 2024 La màgica DoReMi</p>
+  </footer>
+
+  <script>
+    // Mapa con enlaces de episodios organizados por temporada y capítulo
+    const episodeLinks = {
+      "1": { "1": "https://drive.google.com/drive/u/2/folders/1CW8B3rWo4l4bku3VzbrDvS5TY3Hh7ugW", "2": "https://drive.google.com/uc?id=ID_EPISODIO_T1E2", "3": "https://drive.google.com/uc?id=ID_EPISODIO_T1E3" },
+      "2": { "1": "https://drive.google.com/uc?id=ID_EPISODIO_T2E1", "2": "https://drive.google.com/uc?id=ID_EPISODIO_T2E2", "3": "https://drive.google.com/uc?id=ID_EPISODIO_T2E3" },
+      "3": { "1": "https://drive.google.com/uc?id=ID_EPISODIO_T3E1", "2": "https://drive.google.com/uc?id=ID_EPISODIO_T3E2", "3": "https://drive.google.com/uc?id=ID_EPISODIO_T3E3" }
+    };
+
+    // Función para redirigir al episodio seleccionado
+    function goToEpisode(event) {
+      event.preventDefault(); // Evita que el formulario recargue la página
+      const season = document.getElementById("season").value;
+      const episode = document.getElementById("episode").value;
+
+      if (season && episode && episodeLinks[season][episode]) {
+        // Redirige al enlace del episodio correspondiente
+        window.location.href = episodeLinks[season][episode];
+      } else {
+        alert("Por favor, selecciona una temporada y un episodio válidos.");
+      }
+    }
+  </script>
+</body>
+</html>
