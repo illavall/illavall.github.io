@@ -31,7 +31,7 @@ main {
   position: relative;
   z-index: 1; /* Asegura que esté encima de la imagen */
   background-color: #f6d8e7; /* Fondo del cuadro */
-  padding: 20px;
+  padding: 50px;
   border: 1mm solid #414040; /* Borde del cuadro */
   border-radius: 8px; /* Bordes redondeados */
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombras suaves */
