@@ -8,7 +8,7 @@
 </head>
 <body>
   <header>
-    <!-- Puedes agregar un título o logo aquí -->
+    <!-- Aquí puedes añadir un logo o título si lo deseas -->
   </header>
 
   <main>
@@ -30,14 +30,14 @@
       </select>
 
       <div class="button-container">
-        <button type="button" class="btn-secondary" onclick="playRandomEpisode()">&#x21BA;</button>
         <button type="submit" class="btn-primary">Reproducir</button>
+        <button type="button" class="btn-secondary" onclick="playRandomEpisode()">Aleatorio</button>
       </div>
     </form>
   </main>
 
   <footer>
-    <!-- Información adicional -->
+    <!-- Aquí puedes añadir información adicional -->
   </footer>
 
   <script>
@@ -50,7 +50,7 @@
 
     // Función para redirigir al episodio seleccionado
     function goToEpisode(event) {
-      event.preventDefault();
+      event.preventDefault(); // Evita que el formulario recargue la página
       const season = document.getElementById("season").value;
       const episode = document.getElementById("episode").value;
 
@@ -74,4 +74,3 @@
   </script>
 </body>
 </html>
-
