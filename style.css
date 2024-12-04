@@ -1,6 +1,6 @@
 /* General Styles */
 body {
-  font-family: Arial, sans-serif;
+  font-family: Helvetica;
   margin: 0;
   padding: 0;
   background-color: #f6d8e7; /* Color de fondo */
@@ -34,7 +34,7 @@ main {
   padding: 20px;
   border: 1mm solid #414040; /* Borde del cuadro */
   border-radius: 8px; /* Bordes redondeados */
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3); /* Sombras suaves */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombras suaves */
   text-align: center;
   width: 300px;
 }
@@ -49,7 +49,7 @@ select, button {
   font-size: 14px;
   padding: 10px;
   margin: 10px 0;
-  width: 100%;
+  width: 70%;
   border: 1px solid #414040;
   border-radius: 4px;
 }
