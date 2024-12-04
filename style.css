@@ -13,7 +13,7 @@ body {
 /* Imagen centrada */
 body::before {
   content: "";
-  background-image: url('La màgica Do-Re-Mi.png'); /* Cambia por la ruta de tu imagen */
+  background-image: url('C:\Users\illav\OneDrive\Escritorio\AMIC\La màgica Do-Re-Mi.png'); /* Cambia por la ruta de tu imagen */
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain; /* Asegura que no se deforme */
